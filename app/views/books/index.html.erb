@@ -46,7 +46,17 @@
 					</td>
 					<td><%= link_to book.title, book, class: "book_#{book.id}" %></td>
 					<td><%= book.body %></td>
-					<%# この行にfavoriteをrenderする %>
+					<td>
+    					<% if user_signed_in? %>
+        					<% if book.favorited_by?(current_user) %>
+            					<p><span class="glyphicon glyphicon-heart"></span><%= link_to book.favorites.count, book_favorites_path(book.id), method: :delete %></p>
+        					<% else %>
+            					<p><span class="glyphicon glyphicon-heart"></span><%= link_to book.favorites.count, book_favorites_path(book.id), method: :post %></p>
+        					<% end %>
+    					<% else %>
+        					<p><span>お気に入り数: </span><%= book.favorites.count %></p>
+    					<% end %>
+					</td>
 				</tr>
 				<% end %>
 			</tbody>

@@ -34,7 +34,7 @@
 					    <%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %>
 					  <% end %>
 					</td>
-					<%# ここにfavorite %>
+					<td><%= render 'favorite', book: @book %></td>
 				</tr>
 		</table>
 	</div>

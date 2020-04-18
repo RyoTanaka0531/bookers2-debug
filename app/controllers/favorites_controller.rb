@@ -1,23 +1,14 @@
 class FavoritesController < ApplicationController
-  def creat
-    @book = Book.find(params[:book_id])
-    unless @book.favorite?(current_user)
-      @book.favorite(current_user)
-      respond_to do |format|
-        format.html {redirect_to request.referrer || root_url}
-        format.js
-      end
-    end
+  before_action :authenticate_user!
+  def create
+    favorite = current_user.favorites.build(book_id: params[:book_id])
+    favorite.save
+    redirect_to books_path
   end
 
   def destroy
-    @book = Favorite.find(params[:id]).book
-    if @book.favorite?(current_user)
-      @book.unfavorite(current_user)
-      respond_to do |format|
-        format.html {redirect_to request.referrer || root_url}
-        format.js
-      end
-    end
+    favorite = Favorite.find_by(book_id: params[:book_id], user_id: current_user.id)
+    favorite.destroy
+    redirect_to books_path
   end
 end

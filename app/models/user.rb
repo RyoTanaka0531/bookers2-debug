@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,:validatable
 
   has_many :books
-  has_many :favorite, dependent: :destroy
+  has_many :favorites
   attachment :profile_image, destroy: false
 
   #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
