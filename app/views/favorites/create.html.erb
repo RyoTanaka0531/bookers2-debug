@@ -1,2 +1,1 @@
-<h1>Favorites#create</h1>
-<p>Find me in app/views/favorites/create.html.erb</p>
+$("#book-<%= @book.id %> .like").html("<%= escape_javascript(render "likes/like", book: @book) %>");
