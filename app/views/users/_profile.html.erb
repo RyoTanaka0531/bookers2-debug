@@ -20,15 +20,18 @@
 		</tr>
 </table>
 <div class="follow">
+  <% if current_user.id != user.id %>
     <% if current_user.following?(user) %>
-		<%= form_for(current_user.active_relationships.build) do |f| %>
-			<%= f.submit "フォローする", class: "btn btn-sucess" %>
-		<% end %>
-    <% else %>
-		<%= form_for(current_user.active_relationships.find_by(followed_id: user.id)), method: :delete, do |f|%>
+		<%= form_for(current_user.active_relationships.find_by(followed_id: user.id), html: {method: :delete}) do |f|%>
 			<%= f.submit "フォローを外す", class: "btn btn-primary"%>
 		<% end %>
+    <% else %>
+		<%= form_for(current_user.active_relationships.build) do |f| %>
+			<div><%= hidden_field_tag :followed_id, user.id %></div>
+			<%= f.submit "フォローする", class: "btn btn-success" %>
+		<% end %>
     <% end %>
+  <% end %>
 </div>
 
 <div class="row">
