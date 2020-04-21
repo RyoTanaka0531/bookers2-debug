@@ -2,45 +2,8 @@
     <h2><%= @model.capitalize %>s search for '<%= @content %>'</h2>
 	<!--users一覧 -->
 <% if @model == 'user' %>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>image</th>
-				<th>name</th>
-				<th><colspan="3"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @datas.each do |data| %>
-			<tr>
-				<td><%= attachment_image_tag(data, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
-				<td><%= @content %></td>
-				<td><%= link_to "Show", data, class: "user_#{data.id}" %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<%= render 'search_user', datas: @datas %>
 <% elsif @model == 'book' %>
-		<!--books一覧 -->
-	<table class="table">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Title</th>
-				<th>Opinion</th>
-				<th colspan="3"></th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<% @datas.each do |data| %>
-			<tr>
-                <td></td>
-				<td><%= data.title %></td>
-				<td><%= data.body %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<%= render 'search_book', datas: @datas %>
 <% end %>
 </div>
