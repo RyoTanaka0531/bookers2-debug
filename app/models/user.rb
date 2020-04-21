@@ -33,6 +33,13 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+
   #def self.search(method, word)
 		#if method == "perfect_match"
 			#@users = User.where("name LIKE ?", "#{word}")
