@@ -40,7 +40,13 @@ class User < ApplicationRecord
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
 
-  geocodered_by :
+  def address
+    [:city, :street].compact.join(', ')
+  end
+
+  geocoded_by :address
+  after_validation :geocode
+
 
   #def self.search(method, word)
 		#if method == "perfect_match"
