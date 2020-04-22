@@ -1,25 +1,25 @@
 <div class="container">
-<div class="row">
-  <div class="col-xs-3">
-	<h2>User info</h2>
-	<%= render 'profile', user: @user %>
+  <div class="row">
+    <div class="col-xs-3">
+	  <h2>User info</h2>
+	  <%= render 'profile', user: @user %>
 	<!--同コントローラーのviewで表示ならusersは省略可 -->
 
-	<h2>New book</h2>
-	<%= render 'books/newform', book: @book %>
-  </div>
+	  <h2>New book</h2>
+	  <%= render 'books/newform', book: @book %>
+    </div>
 
-<div class="col-xs-9">
-<h2>Books</h2>
+ 	<div class="col-xs-9">
+	<h2>Books</h2>
 <!--books一覧 -->
-<table class="table table-hover table-inverse">
-  <thead>
-	<tr>
-	  <th></th>
-	  <th>Title</th>
-	  <th>Opinion</th>
-	  <th colspan="3"></th>
-	</tr>
+	<table class="table table-hover table-inverse">
+  	<thead>
+		<tr>
+	  		<th></th>
+	  		<th>Title</th>
+	  		<th>Opinion</th>
+	  	<th colspan="3"></th>
+		</tr>
 	</thead>
 
 	<tbody>
@@ -35,8 +35,30 @@
 		</tr>
 	  <% end %>
 	</tbody>
-</table>
+	</table>
+	</div>
 </div>
-</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>Your Map</h2>
+			<div id="map"></div>
+			<style>
+			#map{
+				height: 600px;
+			}
+			</style>
+			<script>
+			var map;
+			function initMap() {
+				let map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: -34.397, lng: 150.644},
+				zoom: 8
+				});
+			}
+			</script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGa4hqvKh54IOq_oAD2OHR8qq0-tRQRG4&callback=initMap"
+			async defer></script>
+		</div>
+	</div>
 <!--books一覧 -->
 

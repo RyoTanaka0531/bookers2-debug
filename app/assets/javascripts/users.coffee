@@ -11,8 +11,8 @@ $ ->
     #   %5  町域
     #   %6  大口事業所の番地
     #   %7  大口事業所の名称
-         adderss : {
-            "#address_prefecture_name" : "%3",
+         address : {
+            "#user_prefecture_code" : "%3",
             "#address_city"  : "%4%5",
             "#address_street" : "%6%7"
          } 
