@@ -50,7 +50,7 @@
 			<script type="text/javascript">
 			function initMap() {
 			// latitude,longitudeから位置を特定
-				var test ={lat: @user.latitude, lng: @user.longitude};
+				var test ={lat: <%= @user.latitude %>, lng: <%= @user.longitude %>};
 				var map = new google.maps.Map(document.getElementById('map'), {
 						zoom: 15, 
 						center: test
@@ -58,7 +58,7 @@
 				var transitLayer = new google.maps.TransitLayer();
 				transitLayer.setMap(map);
 
-				var contentString = '住所：<%= @user.city %>';
+				var contentString = '住所：<%= @user.address %>';
 				var infowindow = new google.maps.InfoWindow({
 				content: contentString
 				});
@@ -75,7 +75,7 @@
 				});
 			}
 			</script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGa4hqvKh54IOq_oAD2OHR8qq0-tRQRG4&callback=initMap"
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9z2R2U9GRYrkHeCr2qLrxoZ-c8MPK9e4&callback=initMap"
 			async defer></script>
 		</div>
 	</div>

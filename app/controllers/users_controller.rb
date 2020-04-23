@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def create
   @user = User.new(params_user)
+  @user.address = @user.city + @user.street
+  @shop.address = @shop.address.gsub(/\d+/, "").gsub(/\-+/, "")
   @user.save, notice = 'Welcome! You have signed up successfully.'
   redirect_to user_path
   end
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-  	params.require(:user).permit(:name, :introduction, :profile_image, :city, :street, :latitude, :longitude)
+  	params.require(:user).permit(:name, :introduction, :profile_image, :city, :street, :address, :latitude, :longitude)
   end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。

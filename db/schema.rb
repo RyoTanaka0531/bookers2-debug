@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_132004) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "favorites_count", default: 0, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -60,16 +59,11 @@ ActiveRecord::Schema.define(version: 2020_04_22_132004) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "name"
+    t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "introduction"
     t.string "profile_image_id"
-    t.string "prefecture_code"
-    t.string "postal_code"
-    t.string "city"
-    t.string "building"
-    t.string "street"
     t.float "latitude"
     t.float "longitude"
     t.string "address"
