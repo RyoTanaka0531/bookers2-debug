@@ -6,9 +6,20 @@ Rails.application.routes.draw do
   get 'book_comments/destroy'
   #get 'favorites/create'
   #get 'favorites/destroy'
-  devise_for :users
+  devise_scope :user do
+    get "users/sign_in" => "users/sessions#new"
+    post "users/sign_in" => "users/sessions#create"
+    delete "users/sign_out" => "users/sessions#destroy"
+    get "users/sign_up" => "users/registrations#new"  
+    post "users" => "users/registrations#create"
+  end
+  devise_for :users, skip: :all
   root 'homes#top'
-  resources :users,only: [:show,:index,:edit,:update]
+  get "users/:id" => "users#show", as: "users_show"
+  get "users/" => "users#index" , as: "users_index"
+  get "users/:id/edit" => "users#edit", as: "users_edit"
+  patch "users/:id" => "users#update", as: "users_update"
+
   resources :books do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]

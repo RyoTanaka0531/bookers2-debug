@@ -64,6 +64,10 @@ ActiveRecord::Schema.define(version: 2020_04_22_132004) do
     t.datetime "updated_at", null: false
     t.text "introduction"
     t.string "profile_image_id"
+    t.string "city"
+    t.string "street"
+    t.string "postal_code"
+    t.string "prefecture_code"
     t.float "latitude"
     t.float "longitude"
     t.string "address"

@@ -40,12 +40,11 @@ class User < ApplicationRecord
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
   end
 
-  def address
-    [:city, :street].compact.join(', ')
-  end
 
   geocoded_by :address
   after_validation :geocode
+  #reverse_geocoded_by :latitude, :longitude
+  #after_validation :reverse_geocode, if: Proc.new { |a| a.latitude_changed? or a.longitude_changed? }
 
 
   #def self.search(method, word)
