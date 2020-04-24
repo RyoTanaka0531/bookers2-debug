@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,:validatable,:confirmable
+         :recoverable, :rememberable, :trackable,:validatable#,:confirmable
 
   has_many :books
   has_many :favorites
@@ -43,6 +43,12 @@ class User < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
+
+  after_create :send_welcome_mail
+
+  def send_welcome_mail
+    UserMailer.user_welcome_mail(self).deliver
+  end
   #reverse_geocoded_by :latitude, :longitude
   #after_validation :reverse_geocode, if: Proc.new { |a| a.latitude_changed? or a.longitude_changed? }
 

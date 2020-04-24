@@ -13,8 +13,7 @@ class UsersController < ApplicationController
   @user.address = @user.city + @user.street
   @shop.address = @shop.address.gsub(/\d+/, "").gsub(/\-+/, "")
   @user.save, notice = 'Welcome! You have signed up successfully.'
-  redirect_to user_path
-  end
+  redirect_to user_path  end
 
   def index
   	@users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。

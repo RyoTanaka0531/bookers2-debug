@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get "users/confirmation/new" => "users/confirmations#new"
     post "users/confirmation" => "users/confirmations#create"
     get "users/confirmation" => "users/confirmations#show"
+    get "users/password/new" => "users/passwords#new"
+    post "users/password/" => "users/passwords#create"
   end
   devise_for :users, skip: :all
   #if Rails.env.development?

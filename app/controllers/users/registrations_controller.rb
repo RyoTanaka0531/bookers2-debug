@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     #resource.address = "#{resource.city} #{resource.street}"
     resource.save
-    byebug
+    #yebug
   yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -71,9 +71,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-   users_show_path(current_user)
+   user_path(current_user)
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+    #sign_upの際にnameのデータ操作を許。追加したカラム。
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
