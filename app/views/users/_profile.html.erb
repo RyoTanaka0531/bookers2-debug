@@ -33,7 +33,11 @@
     <% end %>
   <% end %>
 </div>
-
+<div class="chat">
+	<% if current_user.id != user.id %>
+		<%= link_to "Chatを始める", chats_show_path%>
+	<% end %>
+</div>
 <div class="row">
 	<%= link_to '',edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 </div>
