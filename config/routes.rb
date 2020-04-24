@@ -12,8 +12,15 @@ Rails.application.routes.draw do
     delete "users/sign_out" => "users/sessions#destroy"
     get "users/sign_up" => "users/registrations#new"  
     post "users" => "users/registrations#create"
+    get "users/confirmation/new" => "users/confirmations#new"
+    post "users/confirmation" => "users/confirmations#create"
+    get "users/confirmation" => "users/confirmations#show"
   end
   devise_for :users, skip: :all
+  #if Rails.env.development?
+    #mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  #end
+  
   root 'homes#top'
   get "users/:id" => "users#show", as: "users_show"
   get "users/" => "users#index" , as: "users_index"

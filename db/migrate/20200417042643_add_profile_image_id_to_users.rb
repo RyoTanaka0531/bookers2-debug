@@ -5,5 +5,6 @@ class AddProfileImageIdToUsers < ActiveRecord::Migration[5.2]
     add_column :users, :street, :string
     add_column :users, :postal_code, :string
     add_column :users, :prefecture_code, :string
+    
   end
 end
