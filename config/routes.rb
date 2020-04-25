@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  get 'chats/show' => "chats#show"
+  get 'chats/show' => 'chats#show', as: 'chats_show'
+  mount ActionCable.server => '/cable'
   get '/search' => 'search#search'
   get 'relationships/create'
   get 'relationships/destroy'
   get 'book_comments/create'
   get 'book_comments/destroy'
-  #get 'favorites/create'
-  #get 'favorites/destroy'
+  # get 'favorites/create'
+  # get 'favorites/destroy'
   devise_scope :user do
-    get "users/sign_in" => "users/sessions#new"
-    post "users/sign_in" => "users/sessions#create"
-    delete "users/sign_out" => "users/sessions#destroy"
-    get "users/sign_up" => "users/registrations#new"  
+    get 'users/sign_in' => 'users/sessions#new'
+    post 'users/sign_in' => 'users/sessions#create'
+    delete 'users/sign_out' => "users/sessions#destroy"
+    get "users/sign_up" => "users/registrations#new"
     post "users" => "users/registrations#create"
     get "users/confirmation/new" => "users/confirmations#new"
     post "users/confirmation" => "users/confirmations#create"
@@ -20,10 +21,10 @@ Rails.application.routes.draw do
     post "users/password/" => "users/passwords#create"
   end
   devise_for :users, skip: :all
-  #if Rails.env.development?
-    #mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  #end
-  
+  # if Rails.env.development?
+  # mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  # end
+
   root 'homes#top'
   get "users/:id" => "users#show", as: "users_show"
   get "users/" => "users#index" , as: "users_index"
