@@ -1,4 +1,3 @@
-
     <% if user_signed_in? %>
         <% if book.favorited_by?(current_user) %>
             <p><span class="glyphicon glyphicon-heart"></span><%= link_to book.favorites.count, book_favorites_path(book.id), method: :delete, remote: true %></p>

@@ -15,7 +15,7 @@ ja:
         resend_confirmation_instructions: "アカウント確認メール再送"
     mailer:
       confirmation_instructions:
-        subject: "新規登録完了のご連絡"
+        action: "新規登録完了のご連絡"
         greeting: "ようこそ、%{recipient}さん!"
         instruction: "次のリンクでメールアドレスの確認が完了します:"
       reset_password_instructions:

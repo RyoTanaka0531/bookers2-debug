@@ -20,7 +20,7 @@
 		</tr>
 </table>
 <div class="follow">
-  <% if current_user.id != user.id %>
+<% if current_user.id != user.id %>
     <% if current_user.following?(user) %>
 		<%= form_for(current_user.active_relationships.find_by(followed_id: user.id), html: {method: :delete}) do |f|%>
 			<%= f.submit "フォローを外す", class: "btn btn-primary"%>
@@ -31,7 +31,7 @@
 			<%= f.submit "フォローする", class: "btn btn-success" %>
 		<% end %>
     <% end %>
-  <% end %>
+<% end %>
 </div>
 <div class="chat">
 	<% if current_user.id != user.id %>
