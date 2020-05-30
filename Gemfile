@@ -82,3 +82,6 @@ gem 'dotenv-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'pry-rails'
+group :production do
+  gem 'mysql2'
+end
